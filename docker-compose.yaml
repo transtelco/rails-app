@@ -1,0 +1,26 @@
+version: '3'
+services:
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    volumes:
+    - 'postgres_data:/var/lib/postgresql/data/'
+  redis:
+    image: redis
+  web:
+    build: .
+    image: victor755555/graphl-rails
+    links:
+    - postgres
+    - redis
+    ports:
+    - "80:80"
+    # Following is development configuration
+    command: /bin/bash -c "rake db:migrate && rails server -b 0.0.0.0 -p 80"
+    environment:
+      RAILS_ENV: development
+volumes:
+  postgres_data:
+    driver: local
