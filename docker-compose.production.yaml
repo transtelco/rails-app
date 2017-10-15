@@ -10,7 +10,9 @@ services:
   redis:
     image: redis
   web:
-    build: .
+    build:
+      context: ./
+      dockerfile: ./Dockerfile.production
     image: victor755555/graphl-rails
     links:
     - postgres
@@ -19,12 +21,8 @@ services:
     - postgres
     ports:
     - "8000:8000"
-    # Following is development configuration
-    # command: /bin/bash -c "rake db:migrate && rails server -b 0.0.0.0 -p 80"
-    volumes:
-    - ./:/usr/src/app/
     environment:
-      RAILS_ENV: development
+      RAILS_ENV: production
       DATABASE_URL: postgres://postgres:password@postgres/postgres
 volumes:
   postgres_data:

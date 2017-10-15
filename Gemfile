@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.3.1'
 
+gem 'puma', '~>3.10.0'
 gem 'graphql'
 gem 'graphiql-rails'
 gem 'react-rails'
@@ -18,6 +19,7 @@ group :development, :test do
   gem 'byebug'
   gem 'spring'
   gem 'minitest'
+  gem 'listen', '~> 3.0'
 end
 
 group :development do
