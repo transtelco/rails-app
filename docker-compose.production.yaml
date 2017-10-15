@@ -13,7 +13,7 @@ services:
     build:
       context: ./
       dockerfile: ./Dockerfile.production
-    image: victor755555/graphl-rails
+    image: victor755555/graphl-rails:prod
     links:
     - postgres
     - redis
